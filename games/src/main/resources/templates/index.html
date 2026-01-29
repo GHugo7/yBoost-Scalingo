@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>No name</title>
+    <title>Catalog ofles  Games</title>
 </head>
 
 
 <body>
-    <h1>Catalogue de jeux vidéo 🎮</h1>
-    <p>Bienvenue sur mon site.</p>
-</body>
 
+    <h1>Catalogue de jeux vidéo 🎮</h1>
+
+    <ul>
+        <li th:each="game : ${games}">
+            <strong th:text="${game.title}"></strong>
+            (<span th:text="${game.platform}"></span>)
+            - 
+            <a th:href="${game.link}" target="_blank">Acheter</a>
+        </li>
+    </ul>
+
+    <h2>Ajout de jeux vidéo</h2>
+
+    <form th:action="@{/add}" method="post">
+        <input type="text" name="title" placeholder="Titre" required>
+        <input type="text" name="platform" placeholder="Plateforme" required>
+        <input type="url" name="link" placeholder="Lien d'achat" required>
+        <button type="submit">Ajouter</button>
+    </form>
+
+</body>
 </html>
