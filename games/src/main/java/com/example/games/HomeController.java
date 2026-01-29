@@ -12,12 +12,13 @@ public class HomeController {
 
     public HomeController(GameService gameService) {
         this.gameService = gameService;
+
     }
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("games", gameService.getAllGames());
-        model.addAttribute("game", new Game("", "", ""));
+        model.addAttribute("game", new Game("", "", "", 0, "", ""));
         return "index";
     }
 

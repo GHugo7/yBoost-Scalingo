@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Catalog ofles  Games</title>
+    <title>Catalog of  Games</title>
 </head>
-
 
 <body>
 
+    <header>
+        <p>Catalogue de Jeux Vidéo</p>
+        <button type="button">Page</button>
+        <button type="button">Page</button>
+        <a th:href="@{/add}">Ajouter un jeu</a>
+    </header>
+
     <h1>Catalogue de jeux vidéo 🎮</h1>
+        <p>Découvrez et acheter vos jeux vidéo préférés !</p>
 
-    <ul>
-        <li th:each="game : ${games}">
-            <strong th:text="${game.title}"></strong>
-            (<span th:text="${game.platform}"></span>)
-            - 
-            <a th:href="${game.link}" target="_blank">Acheter</a>
-        </li>
-    </ul>
+    <section class="games-grid">
+        <div class="game-card" th:each="game : ${games}">
+            <article>
+                <img th:src="@{images/image.png}">
+                <img th:src="@{images/{img}(img=${game.image})}">
+                <h2 th:text="${game.title}"></h2>
+                <p th:text="${game.platform}"></p>
+                <span th:text="${#strings.repeat('⭐', game.stars)}"></span>
+                <p th:text="${game.description}"></p>
+                <button><a th:href="${game.link}">Acheter</a></button>
+            </article>
+        </div>
+    </section>
 
-    <h2>Ajout de jeux vidéo</h2>
-
-    <form th:action="@{/add}" method="post">
-        <input type="text" name="title" placeholder="Titre" required>
-        <input type="text" name="platform" placeholder="Plateforme" required>
-        <input type="url" name="link" placeholder="Lien d'achat" required>
-        <button type="submit">Ajouter</button>
-    </form>
+<footer>
+    <small>&copy; 2026 – Catalogue de jeux vidéo</small>
+</footer>
 
 </body>
 </html>
