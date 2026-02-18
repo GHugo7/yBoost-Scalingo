@@ -23,7 +23,7 @@
                 <img th:src="@{images/image.png}">
                 <img th:src="@{images/{img}(img=${game.image})}">
                 <h2 th:text="${game.title}"></h2>
-                <p th:text="${game.platform}"></p>
+                <small> <p th:text="${game.platform}"></p> </small>
                 <span th:text="${#strings.repeat('⭐', game.stars)}"></span>
                 <p th:text="${game.description}"></p>
                 <button><a th:href="${game.link}">Acheter</a></button>
