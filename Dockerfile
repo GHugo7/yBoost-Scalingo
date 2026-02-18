@@ -10,7 +10,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Copier le reste du projet
-COPY src ./src
+COPY src ./games/src
 
 # Build le projet
 RUN mvn clean package -DskipTests
